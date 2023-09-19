@@ -258,54 +258,7 @@ class MainWindow(QMainWindow):
             .replace("{cognome}",self.email_cliente[self.aziende[self.x - 1]][0][5]) \
             .replace("{azienda}",self.aziende[self.x - 1])
         self.preview_text.setPlainText(body)
-        """formato = QTextCharFormat()
-        formato.setUnderlineColor(Qt.red)
-        formato.setUnderlineStyle(QTextCharFormat.SpellCheckUnderline)
-        check = body_template.split(" ")
-        format = QTextCharFormat()
-        format.setUnderlineStyle(QTextCharFormat.SingleUnderline)
-        format.setUnderlineColor(QColor("red"))
-        if len(check) != self.len_pre2:
-            self.len_pre2 = len(check)
-            for parola in check:
-                if parola not in self.dizionario2:
-                    if "`" in parola \
-                            or "!" in parola \
-                            or "@" in parola \
-                            or "#" in parola \
-                            or "$" in parola \
-                            or "%" in parola \
-                            or "^" in parola \
-                            or "&" in parola \
-                            or "*" in parola \
-                            or "(" in parola \
-                            or ")" in parola \
-                            or "-" in parola \
-                            or "_" in parola \
-                            or "=" in parola \
-                            or "+" in parola \
-                            or "[" in parola \
-                            or "]" in parola \
-                            or "{" in parola \
-                            or "}" in parola \
-                            or "|" in parola \
-                            or "\\" in parola \
-                            or ";" in parola \
-                            or ":" in parola \
-                            or "'" in parola \
-                            or '"' in parola \
-                            or "," in parola \
-                            or "." in parola \
-                            or "<" in parola \
-                            or ">" in parola \
-                            or "/" in parola \
-                            or "?" in parola \
-                            or parola.isdigit():
-                        pass
-                    else:
-                        cursor = self.preview_text.document().find(parola)
-                        cursor.mergeCharFormat(format)
-                        cursor = self.preview_text.document().find(parola,cursor)"""
+
     def select_files(self):
         options = QFileDialog.Options()
         options |= QFileDialog.ReadOnly
@@ -320,10 +273,6 @@ class MainWindow(QMainWindow):
                 file_name2 = file_names[i].split('/')[-1]
                 self.file_name_button = QPushButton(f"{file_name2}",self)
                 self.file_name_button.clicked.connect(lambda: self.delete_file())
-                icon = QIcon(r".\x.png")
-                self.file_name_button.setIcon(icon)
-                icon_size = QSize(17,17)
-                self.file_name_button.setIconSize(icon_size)
                 self.file_name_button.setFont(self.font)
                 self.file_name_button.setFixedWidth(150)
                 self.file_name_button.setProperty("file_name",file_name)
@@ -331,11 +280,9 @@ class MainWindow(QMainWindow):
     def delete_file(self):
         file = self.sender().property("file_name")
         button_to_remove = self.sender()
-        print(file)
         self.file_name_layout.removeWidget(button_to_remove)
         self.attachment_paths.remove(file)
         button_to_remove.deleteLater()
-        print(self.attachment_paths)
     def send_emails(self):
         send_error=[]
         outlook = win32.Dispatch('Outlook.Application')

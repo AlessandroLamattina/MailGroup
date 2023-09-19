@@ -15,7 +15,7 @@ import validate_email
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Invio Offerte")
+        self.setWindowTitle("MailSender")
         ##################################################################################################################################################
         self.conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=.\GroupMail.mdb;')
         self.cursor = self.conn.cursor()
